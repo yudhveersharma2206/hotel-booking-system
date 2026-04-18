@@ -4,24 +4,26 @@ const cors = require("cors");
 
 const app = express();
 
-// ✅ pehle middleware
+// middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ phir routes import
+// routes import
 const authRoutes = require("./routes/authRoutes");
 const hotelRoutes = require("./routes/hotelRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
-// ✅ phir routes use karo
+// routes use
 app.use("/api/auth", authRoutes);
 app.use("/api/hotels", hotelRoutes);
+app.use("/api/bookings", bookingRoutes);
 
-// DB connect
+// DB
 mongoose.connect("mongodb://127.0.0.1:27017/hotelDB")
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
-// test route
+// test
 app.get("/", (req, res) => {
   res.send("API Running...");
 });

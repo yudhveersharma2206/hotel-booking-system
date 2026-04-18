@@ -17,18 +17,22 @@ A full-stack hotel booking web application that allows users to explore hotels, 
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - React.js
 - Axios
 - React Router
 
 ### Backend
+
 - Node.js
 - Express.js
 
 ### Database
+
 - MongoDB (Mongoose)
 
 ### Authentication
+
 - JSON Web Token (JWT)
 - bcrypt.js
 
@@ -48,29 +52,28 @@ hotel-booking/
 ├── frontend/
 │ └── React App
 
-
 ---
 
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/yudhveersharma2206/hotel-booking-system.git
+
+bash
+git clone <https://github.com/yudhveersharma2206/hotel-booking-system.git>
 cd hotel-booking-system
-```
+
 2️⃣ Backend Setup
-```
+
 cd backend
 npm install
 npm start
-```
 
 3️⃣ Frontend Setup
-```
+
 cd frontend
 npm install
 npm start
-```
+
 🔌 API Endpoints
   Auth
   POST /api/auth/register
