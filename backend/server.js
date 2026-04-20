@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -18,9 +19,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/hotels", hotelRoutes);
 
 // DB connect
-mongoose.connect("mongodb://127.0.0.1:27017/hotelDB")
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
 // test route
 app.get("/", (req, res) => {
