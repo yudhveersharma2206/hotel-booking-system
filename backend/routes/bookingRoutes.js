@@ -2,13 +2,16 @@ const express = require("express");
 const router = express.Router();
 const { createBooking } = require("../controllers/bookingController");
 const auth = require("../middleware/authMiddleware");
-
-router.post("/book", auth, createBooking);
+const Booking = require("../models/Booking");
 
 router.get("/my", auth, async (req, res) => {
-  const bookings = await Booking.find({ userId: req.user.id }).populate("hotelId");
+  const bookings = await Booking.find({ userId: req.user.id })
+    .populate("hotelId");
+
   res.json(bookings);
 });
+
+router.post("/book", auth, createBooking);
 
 router.delete("/cancel/:id", auth, async (req, res) => {
   await Booking.findByIdAndDelete(req.params.id);

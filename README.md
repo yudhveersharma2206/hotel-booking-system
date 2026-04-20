@@ -58,12 +58,10 @@ hotel-booking/
 
 ### 1️⃣ Clone the Repository
 
-bash
 git clone <https://github.com/yudhveersharma2206/hotel-booking-system.git>
 cd hotel-booking-system
 
 2️⃣ Backend Setup
-
 cd backend
 npm install
 npm start
