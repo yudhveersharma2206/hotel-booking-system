@@ -1,38 +1,40 @@
-# 🏨 Hotel Booking System
+# 🚀 Roomify – Hotel Booking Web App
 
-A full-stack hotel booking web application that allows users to explore hotels, manage bookings, and perform secure authentication. Built using the MERN stack with a focus on scalability and clean architecture.
+**Your Perfect Stay, Simplified.**
+
+Roomify is a full-stack hotel booking web application where users can explore hotels, book stays, manage bookings, and view analytics through a clean and modern dashboard.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
 - 🔐 User Authentication (Register & Login with JWT)
-- 🏨 Hotel Management (Add, View Hotels)
-- 🔒 Protected Routes (Authorized Access)
-- 🌐 RESTful API Integration
-- ⚡ Fast and Responsive UI
+- 🏨 Browse & Search Hotels
+- 📅 Book Hotels with Check-In & Check-Out Dates
+- ❌ Cancel Bookings
+- 📊 Dashboard with Analytics & Charts
+- 🔒 Protected Routes (Authorization)
+- 🎨 Clean & Responsive UI (Tailwind CSS)
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-
 - React.js
+- Tailwind CSS
 - Axios
 - React Router
+- Recharts (Charts)
 
 ### Backend
-
 - Node.js
 - Express.js
 
 ### Database
-
 - MongoDB (Mongoose)
 
 ### Authentication
-
 - JSON Web Token (JWT)
 - bcrypt.js
 
@@ -40,17 +42,19 @@ A full-stack hotel booking web application that allows users to explore hotels, 
 
 ## 📂 Project Structure
 
+```
 hotel-booking/
 │
 ├── backend/
-│ ├── models/
-│ ├── routes/
-│ ├── controllers/
-│ ├── middleware/
-│ └── server.js
+│   ├── models/
+│   ├── routes/
+│   ├── controllers/
+│   ├── middleware/
+│   └── server.js
 │
 ├── frontend/
-│ └── React App
+│   └── React App
+```
 
 ---
 
@@ -58,42 +62,73 @@ hotel-booking/
 
 ### 1️⃣ Clone the Repository
 
-git clone <https://github.com/yudhveersharma2206/hotel-booking-system.git>
+```bash
+git clone https://github.com/yudhveersharma2206/hotel-booking-system.git
 cd hotel-booking-system
+```
 
-2️⃣ Backend Setup
+---
+
+### 2️⃣ Backend Setup
+
+```bash
 cd backend
 npm install
 npm start
+```
 
-3️⃣ Frontend Setup
+---
 
+### 3️⃣ Frontend Setup
+
+```bash
 cd frontend
 npm install
 npm start
+```
 
-🔌 API Endpoints
-  Auth
-  POST /api/auth/register
-  POST /api/auth/login
-  Hotels
-  GET /api/hotels
-  POST /api/hotels/add (Protected)
-  GET /api/hotels/:id
+---
 
-🔐 Authentication Flow
-  User registers with email & password
-  Password is hashed using bcrypt
-  JWT token is generated on login
-  Protected routes require token in headers
-  
-📈 Future Improvements
-  Room Booking System with date availability
-  Payment Integration
-  Reviews & Ratings
-  Admin Dashboard
-  Location-based search
+## 🔌 API Endpoints
 
-  Author
-  Yudhveer Sharma
-  
+### Auth
+- POST `/api/auth/register`
+- POST `/api/auth/login`
+
+### Hotels
+- GET `/api/hotels`
+- POST `/api/hotels/add` (Protected)
+
+### Bookings
+- POST `/api/bookings/book`
+- GET `/api/bookings/my`
+- DELETE `/api/bookings/cancel/:id`
+
+---
+
+## 🔐 Authentication Flow
+
+- User registers with email & password  
+- Password is hashed using bcrypt  
+- JWT token is generated on login  
+- Protected routes require token in headers  
+
+---
+
+## 📈 Future Improvements
+
+- 💳 Payment Integration (Stripe/Razorpay)
+- ⭐ Reviews & Ratings System
+- 📍 Location-based Search
+- 👤 User Profile Page
+- 🧑‍💼 Admin Panel
+
+---
+
+## 👨‍💻 Author
+
+**Yudhveer Sharma**
+
+---
+
+## 🌐 Live Demo (Coming Soon)
