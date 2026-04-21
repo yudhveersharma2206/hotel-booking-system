@@ -21,7 +21,7 @@ app.use("/api/hotels", hotelRoutes);
 // DB connect
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+  .catch(err => console.log("DB Error:", err));
 
 // test route
 app.get("/", (req, res) => {
