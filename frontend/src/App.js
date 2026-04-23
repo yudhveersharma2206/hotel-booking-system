@@ -8,6 +8,7 @@ import MyBookings from "./pages/MyBookings";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
+import HotelDetails from "./pages/HotelDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/hotel/:id" element={<HotelDetails />} />
       </Routes>
       </BrowserRouter>
   );

@@ -6,7 +6,12 @@ const Booking = require("../models/Booking");
 
 router.get("/my", auth, async (req, res) => {
   const bookings = await Booking.find({ userId: req.user.id })
-    .populate("hotelId");
+    .populate({
+      path: "hotelId",
+      model: "Hotel"
+    });
+
+  console.log("Fetched bookings:", bookings);
 
   res.json(bookings);
 });

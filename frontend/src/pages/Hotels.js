@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import API from "../services/api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 function Hotels() {
     const [hotels, setHotels] = useState([]);
@@ -10,26 +11,7 @@ function Hotels() {
     const [checkOut, setCheckOut] = useState(new Date());
     const [loadingId, setLoadingId] = useState(null);
   const [search, setSearch] = useState("");
-  const hotelImages = [
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945",
-  "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa",
-  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
-  "https://images.unsplash.com/photo-1590490360182-c33d57733427",
-  "https://images.unsplash.com/photo-1578683010236-d716f9a3f461",
-  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb",
-  "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4",
-  "https://images.unsplash.com/photo-1571896349842-33c89424de2d",
-  "https://images.unsplash.com/photo-1560347876-aeef00ee58a1",
-  "https://images.unsplash.com/photo-1535827841776-24afc1e255ac",
-  "https://images.unsplash.com/photo-1584132967334-10e028bd69f7",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
-  "https://images.unsplash.com/photo-1560448075-bb485b067938",
-  "https://images.unsplash.com/photo-1540518614846-7eded433c457",
-  "https://images.unsplash.com/photo-1568495248636-6432b97bd949",
-  "https://images.unsplash.com/photo-1554995207-c18c203602cb",
-  "https://images.unsplash.com/photo-1564501049412-61c2a3083791"
-];
-const getRating = () => (Math.random() * 2 + 3).toFixed(1);
+  const navigate = useNavigate();
   
     useEffect(() => {
     API.get("/hotels")
@@ -78,7 +60,7 @@ useEffect(() => {
   };
 
     return (
-    <div className="min-h-screen bg-gray-100 p-6">
+  <div className="min-h-screen bg-gray-100 p-6">
     <h2 className="text-3xl font-bold text-center mb-6">
       Hotels
     </h2>
@@ -102,62 +84,74 @@ useEffect(() => {
           className="border p-2 rounded-lg bg-white text-black"
         />
       </div>
-            </div>
-            
+    </div>
+
+    {/* Search */}
     <input
-  type="text"
-  placeholder="Search hotels..."
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-  className="w-full p-2 border rounded-lg mb-6"
-/>
+      type="text"
+      placeholder="Search hotels..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="w-full p-2 border rounded-lg mb-6"
+    />
 
     {/* Hotels List */}
     <div className="grid md:grid-cols-2 gap-5">
       {hotels
-  .filter(hotel =>
-    hotel.name.toLowerCase().includes(search.toLowerCase())
-  )
-  .map((hotel,index) => (
-        <div
-  key={hotel._id}
-  className="bg-white p-5 rounded-xl shadow border hover:shadow-md transition space-y-2"
->
-      <img
-      src={hotelImages[index % hotelImages.length]}        alt="hotel"
-        className="w-full h-48 object-cover rounded-lg mb-3"
-      />
-          <h3 className="text-xl font-semibold">
-            {hotel.name}
-          </h3>
+        .filter((hotel) =>
+          hotel.name.toLowerCase().includes(search.toLowerCase())
+        )
+        .map((hotel, index) => (
+          <div
+            key={hotel._id}
+            onClick={() => navigate(`/hotel/${hotel._id}`)}
+            className="bg-white p-5 rounded-xl shadow border hover:shadow-md transition space-y-2 cursor-pointer"
+          >
+            <img
+              src={hotel.images[0]}
+              alt="hotel"
+              className="w-full h-48 object-cover rounded-lg mb-3 hover:scale-105 transition"
+            />
 
-          <p className="text-gray-600">
-            {hotel.location}
-          </p>
+            <h3 className="text-xl font-semibold">
+              {hotel.name}
+            </h3>
 
-          <p className="font-semibold">
-              ₹{hotel.price}
-      </p>
-    <p className="text-sm text-gray-500">
-  Rating: {getRating()}
-</p>
+            <p className="text-gray-600">
+              {hotel.location}
+            </p>
 
-          <div className="mt-4 flex gap-3">
-            <button
-  onClick={() => handleBooking(hotel._id)}
-  className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-  {loadingId === hotel._id ? "Booking..." : "Book Now"}
-</button>
+            <p className="font-semibold text-lg text-blue-600">
+              ₹{hotel.price} / night
+            </p>
 
-            <button
-              onClick={() => window.location.href = "/my-bookings"}
-              className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700"
-            >
-              My Bookings
-            </button>
+            <p className="text-sm text-yellow-500 font-medium">
+              ⭐ {hotel.rating}
+            </p>
+
+            <div className="mt-4 flex gap-3">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleBooking(hotel._id);
+                }}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              >
+                {loadingId === hotel._id ? "Booking..." : "Book Now"}
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.location.href = "/my-bookings";
+                }}
+                className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700"
+              >
+                My Bookings
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   </div>
 );

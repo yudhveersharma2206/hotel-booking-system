@@ -11,16 +11,20 @@ function Dashboard() {
     API.get("/bookings/my", {
       headers: { Authorization: token }
     })
-      .then(res => setBookings(res.data))
+      .then(res => {
+        console.log("Bookings data:", res.data);
+        setBookings(res.data);
+      })
       .catch(err => console.log(err));
   }, []);
 
   // 🔥 calculations
   const totalBookings = bookings.length;
 
-  const totalSpent = bookings.reduce((sum, b) => {
-    return sum + (b.hotelId?.price || 0);
-  }, 0);
+ const totalSpent = bookings.reduce((sum, b) => {
+  if (!b.hotelId) return sum;
+  return sum + (b.hotelId.price || 0);
+}, 0);
 
   const totalNights = bookings.reduce((sum, b) => {
     const days =
